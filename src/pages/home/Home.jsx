@@ -1,7 +1,7 @@
 import React from 'react'
 import NavigateBar from '../../root/Components/NavigateBar/NavigateBar'
 import SliderBanner from '@/root/Components/SliderBanner/SliderBanner'
-import UgCakesSearchFeatures from '@/root/Components/q/UgCakesSearchFeatures'
+import UgCakesSearchFeatures from '@/root/Components/UgCakesSearchFeatures/UgCakesSearchFeatures'
 
 const Home = () => {
   return (
