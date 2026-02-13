@@ -105,24 +105,40 @@ const Navbar = () => {
           </SheetContent>
         </Sheet>
 
-        {/* Logo */}
-        <div className="flex-shrink-0">
+        {/* Logo - Hidden on mobile */}
+        <div className="hidden lg:block flex-shrink-0">
           <img
-            className="w-32 sm:w-40 lg:w-52"
+            className="w-32 sm:w-40 lg:w-52 h-auto"
             src="https://i.ibb.co/nNjY5t0b/long-logo-sd.webp"
             alt="Logo"
           />
         </div>
 
-        {/* Mobile Search Toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden"
-          onClick={() => setIsSearchOpen(!isSearchOpen)}
-        >
-          <Search className="h-5 w-5" />
-        </Button>
+        {/* Mobile Right Icons */}
+        <div className="flex items-center gap-1 lg:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+          >
+            <Search className="h-5 w-5" />
+          </Button>
+          
+          <Button variant="ghost" size="icon">
+            <Monitor className="h-5 w-5" />
+          </Button>
+          
+          <Button variant="ghost" size="icon" className="relative">
+            <ShoppingCart className="h-5 w-5" />
+            <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              0
+            </span>
+          </Button>
+          
+          <Button variant="ghost" size="icon">
+            <User className="h-5 w-5" />
+          </Button>
+        </div>
       </div>
 
       {/* Mobile Search Bar - Conditionally shown */}
@@ -140,87 +156,72 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Offer Badge - Hidden on mobile when search is open */}
-      <div className={`${isSearchOpen ? "hidden lg:flex" : "flex"} items-center justify-between bg-purple-100 border border-purple-300 rounded-xl px-4 py-2 w-full max-w-[260px] hover:bg-purple-200 transition cursor-pointer`}>
-        <div className="flex items-center gap-3">
-          <img
-            src="https://i.ibb.co/3R9W2sK/cake.png"
-            alt="offer"
-            className="w-10 h-10 rounded-full border"
-          />
-          <div>
-            <h3 className="text-purple-700 font-semibold text-sm">
-              Valentine’s Day
-            </h3>
-            <p className="text-xs text-purple-600">2 days</p>
+      {/* Desktop Sections with Equal Height - Attached */}
+      <div className="hidden lg:flex items-center w-full justify-center gap-4">
+        {/* Offer Badge */}
+        <div className="flex items-center justify-between bg-purple-100 border border-purple-300 rounded-l-xl px-3 py-1.5 w-full max-w-[240px] hover:bg-purple-200 transition cursor-pointer h-[44px] border-r-0">
+          <div className="flex items-center gap-2">
+            <img
+              src="https://i.ibb.co/3R9W2sK/cake.png"
+              alt="offer"
+              className="w-8 h-8 rounded-full border"
+            />
+            <div>
+              <h3 className="text-purple-700 font-semibold text-xs">
+                Valentine’s Day
+              </h3>
+              <p className="text-[10px] text-purple-600">2 days</p>
+            </div>
           </div>
-        </div>
-        <ChevronRight className="text-purple-600" size={18} />
-      </div>
-
-      {/* Desktop Search */}
-      <div className="relative w-full max-w-[420px] hidden lg:block">
-        <Input
-          type="text"
-          placeholder="Search for cakes, categories, or flavors..."
-          className="w-full pl-9 pr-12 py-2"
-        />
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
-        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">
-          ⌘K
-        </span>
-      </div>
-
-      {/* Theme Icons */}
-      <div className="flex items-center gap-2">
-        {/* Desktop Navigation Links - Hidden on mobile */}
-        <nav className="hidden  items-center gap-1 mr-4">
-          {navLinks.map((link) => (
-            <Button
-              key={link.name}
-              variant="ghost"
-              size="sm"
-              className="text-gray-600 hover:text-purple-700 hover:bg-purple-50"
-              asChild
-            >
-              <a href={link.href}>{link.name}</a>
-            </Button>
-          ))}
-        </nav>
-
-        {/* Theme Toggle Group */}
-        <div className="inline-flex rounded-xl overflow-hidden shadow-md">
-          <Button
-            variant="ghost"
-            className="px-4 py-3 sm:px-6 sm:py-4 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded-none border-r border-gray-300 h-auto"
-          >
-            <SunDim className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            className="px-4 py-3 sm:px-6 sm:py-4 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded-none border-r border-gray-300 h-auto"
-          >
-            <Moon className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            className="px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-b from-purple-500 to-purple-700 text-white rounded-none h-auto hover:from-purple-600 hover:to-purple-800"
-          >
-            <Laptop className="h-5 w-5" />
-          </Button>
+          <ChevronRight className="text-purple-600" size={16} />
         </div>
 
-        {/* Cart Icon for Mobile */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden relative"
-        >
-          <ShoppingCart className="h-5 w-5" />
-          <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-            0
+        {/* Desktop Search - Attached to Offer Badge */}
+        <div className="relative w-full max-w-[380px]">
+          <Input
+            type="text"
+            placeholder="Search for cakes, categories, or flavors..."
+            className="w-full pl-8 pr-10 py-1.5 h-[44px] rounded-none border-l-0 border-r-0 focus:ring-0 focus:outline-none"
+          />
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 h-3.5 w-3.5" />
+          <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-gray-400">
+            ⌘K
           </span>
-        </Button>
+        </div>
+
+        {/* Theme Icons and User Icon - Attached to Search */}
+        <div className="flex items-center ms-6 gap-4">
+          {/* Theme Toggle Group */}
+          <div className="inline-flex rounded-r-xl overflow-hidden shadow-sm h-[44px]">
+            <Button
+              variant="ghost"
+              className="px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded-none border-r border-gray-300 h-full"
+            >
+              <SunDim className="h-3.5 w-3.5" />
+            </Button>
+            <Button
+              variant="ghost"
+              className="px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded-none border-r border-gray-300 h-full"
+            >
+              <Moon className="h-3.5 w-3.5" />
+            </Button>
+            <Button
+              variant="ghost"
+              className="px-3 py-1.5 bg-gradient-to-b from-purple-500 to-purple-700 text-white rounded-none h-full hover:from-purple-600 hover:to-purple-800"
+            >
+              <Laptop className="h-3.5 w-3.5" />
+            </Button>
+          </div>
+
+          {/* User Icon - Separate from theme toggle group */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="ml-0 h-[44px] w-[44px] rounded-r-xl bg-gray-100 hover:bg-gray-200 border-l border-gray-300 ms-4"
+          >
+            <User className="h-3.5 w-3.5" />
+          </Button>
+        </div>
       </div>
     </div>
   );
