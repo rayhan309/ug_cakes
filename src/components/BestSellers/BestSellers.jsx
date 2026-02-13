@@ -59,7 +59,6 @@ import { Link } from "react-router";
 // ];
 
 const BestSellers = () => {
-    
   // cakes data fetching
   const { data: cakes } = useQuery({
     queryKey: ["cakes"],
@@ -69,6 +68,9 @@ const BestSellers = () => {
       return res.data;
     },
   });
+
+  //   data console
+  console.log("data:", cakes);
 
   return (
     <>
