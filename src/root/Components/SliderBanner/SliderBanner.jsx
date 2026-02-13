@@ -76,7 +76,7 @@ const SliderBanner = () => {
 
   return (
     <div 
-      className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] overflow-hidden group"
+      className="relative w-full h-[300px] sm:h-[350px] md:h-[380px] lg:h-[400px] overflow-hidden group"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
@@ -102,7 +102,7 @@ const SliderBanner = () => {
 
           {/* Content - Left aligned */}
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container lg:ms-10 sm:ms-0 px-4   sm:px-6 lg:px-8">
               <div className="max-w-xl text-white text-left">
                 {/* Title */}
                 <h1 
