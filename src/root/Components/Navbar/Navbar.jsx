@@ -142,7 +142,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Search Bar - Conditionally shown */}
-      <div className={`w-full lg:hidden ${isSearchOpen ? "block" : "hidden"}`}>
+      <div className={`w-full lg:hidden ms-auto${isSearchOpen ? "block" : "hidden"}`}>
         <div className="relative">
           <Input
             type="text"
@@ -157,7 +157,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Sections with Equal Height - Attached */}
-      <div className="hidden lg:flex items-center w-full justify-center gap-4">
+      <div className="hidden lg:flex items-center w-full justify-end gap-4">
         {/* Offer Badge */}
         <div className="flex items-center justify-between bg-purple-100 border border-purple-300 rounded-l-xl px-3 py-1.5 w-full max-w-[240px] hover:bg-purple-200 transition cursor-pointer h-[44px] border-r-0">
           <div className="flex items-center gap-2">
