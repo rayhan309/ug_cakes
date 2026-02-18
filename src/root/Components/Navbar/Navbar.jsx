@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import {
   ShoppingCart,
   User,
@@ -16,6 +16,7 @@ import {
   Gift,
   Info,
   Phone,
+  Table2Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,10 +35,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { AuthContext } from "@/AuthContext/AuthContext";
+import NavigateBar from "../NavigateBar/NavigateBar";
 // import useAuth from "@/Hooks/useAuth";
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isRightMenuOpen, setIsRightMenuOpen] = useState(false);
   // const { user } = useAuth();
   // console.log(user, 'user info');
 
@@ -54,7 +57,7 @@ const Navbar = () => {
     <div className="w-full bg-white shadow-sm flex flex-col lg:flex-row items-center justify-between p-4 lg:px-8 gap-4 lg:gap-0 relative">
       {/* Logo and Mobile Menu */}
       <div className="flex items-center justify-between w-full lg:w-auto gap-4">
-        {/* Mobile Menu Trigger */}
+        {/* Left Mobile Menu Trigger */}
         <Sheet>
           <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon" className="shrink-0">
@@ -96,11 +99,17 @@ const Navbar = () => {
 
               {/* Mobile Footer Actions */}
               <div className="border-t p-4 space-y-3">
-                <Button variant="outline" className="w-full justify-start gap-3">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-3"
+                >
                   <User className="h-5 w-5" />
                   Account
                 </Button>
-                <Button variant="outline" className="w-full justify-start gap-3">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-3"
+                >
                   <ShoppingCart className="h-5 w-5" />
                   Cart (0)
                 </Button>
@@ -120,16 +129,27 @@ const Navbar = () => {
 
         {/* Mobile Right Icons */}
         <div className="flex items-center gap-1 lg:hidden">
+          {/* Table2Icon Button with Right Sheet */}
+          <Sheet open={isRightMenuOpen} onOpenChange={setIsRightMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Table2Icon className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0">
+              <div className="flex flex-col h-full">
+                {/* Header with Close Button */}
+               <NavigateBar/>
+              </div>
+            </SheetContent>
+          </Sheet>
+
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
             <Search className="h-5 w-5" />
-          </Button>
-
-          <Button variant="ghost" size="icon">
-            <Monitor className="h-5 w-5" />
           </Button>
 
           <Button variant="ghost" size="icon" className="relative">
@@ -146,7 +166,9 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Search Bar - Conditionally shown */}
-      <div className={`w-full lg:hidden ms-auto${isSearchOpen ? "block" : "hidden"}`}>
+      <div
+        className={`w-full lg:hidden ms-auto${isSearchOpen ? "block" : "hidden"}`}
+      >
         <div className="relative">
           <Input
             type="text"
